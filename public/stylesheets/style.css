@@ -11,9 +11,19 @@ a {
 }
 
 #history {
-  background-color: aqua;
+  background-color: gainsboro;
+  padding: 5px;
 }
 
 #tulos {
-  background-color: red;
+  background-color:gainsboro;
+  padding: 5px;
+}
+
+p {
+  font-size: 14px;
+}
+
+form {
+  margin: 40px;
 }
