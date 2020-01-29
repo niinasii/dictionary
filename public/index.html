@@ -12,36 +12,73 @@
 <body>
     <h1>Dictionary by Otto & Niina</h1>
     <main>
-        <p>This is practise project in training course in Academy. You can lookup definitions for words, if the word is
-            not found, then you'll get alternatives that are spelled similarly as the one you tried.
-            The lookup is done using the (unofficial) Google Dictionary API. Synonyms and "trigger" words are from
-            datamuse API. The searches are done in the server for this app.
-            There are some issues with the services, e.g. some times a word is not found, although it was found a minute
-            earlier and/or later. </p>
+        <p>This is practise project in training course in Academy.</p>
     </main>
-    <label for="hakusana" id="haelabel">Hakusana(t):</label><input type="text" name="hakusana" id="hae">
-    <button type="button" id="nappi">Hae</button>
-
-    <div id="tulos">Tähän tulos</div>
+    <section id="form">
+        <form action="http://localhost:3000/api/" method="GET">
+            <label for="hakusana" id="haelabel">Hakusana(t):</label>
+            <input type="text" name="define" id="hae">
+            <button type="button" id="nappi">Hae</button>
+        </form>
+    </section>
+    <section id="tulos"></section>
     <hr>
-    <div id="history">Tähän hakuhistoria</div>
+    <section id="history"></section>
+    <hr>
+    <section id="datamuse"></section>
+
 
     <script>
-        // Tee fetch pyyntö nodepalvelimeen getillä + nappi jossa on tapahtumansitoja addeventlistener
+        /*
+                document.getElementById("nappi").addEventListener("click", haeData);
+        
+                function haeData(event) {
+        
+                    fetch('http://localhost:3000/testi2.json')
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                            lisääData(data);
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        });
+        
+                    function lisääData(data) {
+                        let i;
+                        let munData = "";
+                        for (i in data) {
+                            munData += data[i] + " " + "<br>";
+                        }
+                        document.getElementById('tulos').innerHTML = munData;
+                        console.log("testi1");
+                    }
+                }
+            */
 
-        document.getElementById('nappi').addEventListener('click', function () {
-            document.getElementById('tulos').innerHTML = munData; //munData menee tulos kenttään html:ssä
-        });
+        function appendData(data) {
+            var munData = document.getElementById("tulos");
+            for (let i = 0; i < data.length; i++) {
+                let div = document.createElement("div");
+                div.innerHTML =
+                    'Word: ' + data[i].word + '<br>' +
+                    'Phonetic: ' + data[i].phonetic + '<br>' +
+                    'Origin: ' + data[i].origin + '<br>'
+                munData.appendChild(div);
+                console.log("testi3")
+            }
+        }
 
-        let munData = document.getElementById('tulos'); // uusi muuttuja munData, jonka arvoksi tulee html-dokumentista 
-        fetch('//localhost:3000/') //mihin osoitteeseen tulee nodepalvelimen hakema data
-            .then(function (response) { return response.json(); }) //sitten palauta vastaus json-muodossa (javascriptolio)
-            .then(function (json) { //sitten tee function json parametrinä
-                let word = json.word; //json tiedostosta word-keypair
-                let meaning = json.meaning; //json tiedostosta meaning-keypair
-                let noun = json.noun; //json tiedostosta noun-keypair
-                let verb = json.verb; //jsontiedostosta verb-keypair
-                munData.innerHTML = word + meaning + noun + verb; //munData sisällön määritys
+        fetch('http://localhost:3000/testi2.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log(err);
             });
 
     </script>
