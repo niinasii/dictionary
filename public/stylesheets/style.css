@@ -9,6 +9,13 @@ body {
 a {
   color: #00B7FF;
 }
+h1 {
+  text-align: center;
+}
+
+#form {
+  text-align: center;
+}
 
 #history {
   background-color: gainsboro;
@@ -17,11 +24,12 @@ a {
 
 #tulos {
   background-color:gainsboro;
-  padding: 5px;
+  padding: 10px;
 }
 
 p {
   font-size: 14px;
+  text-align:center;
 }
 
 form {

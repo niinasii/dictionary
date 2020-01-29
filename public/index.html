@@ -12,19 +12,15 @@
 <body>
     <h1>Dictionary by Otto & Niina</h1>
     <main>
-        <p>This is practise project in training course in Academy. You can lookup definitions for words, if the word is
-            not found, then you'll get alternatives that are spelled similarly as the one you tried.
-            The lookup is done using the (unofficial) Google Dictionary API. Synonyms and "trigger" words are from
-            datamuse API. The searches are done in the server for this app.
-            There are some issues with the services, e.g. some times a word is not found, although it was found a minute
-            earlier and/or later. </p>
+        <p>This is practise project in training course in Academy.</p>
     </main>
-    <form action="http://localhost:3000/api/" method="GET">
-        <label for="hakusana" id="haelabel">Hakusana(t):</label>
-        <input type="text" name="define" id="hae">
-        <button type="button" id="nappi">Hae</button>
-    </form>
-
+    <section id="form">
+        <form action="http://localhost:3000/api/" method="GET">
+            <label for="hakusana" id="haelabel">Hakusana(t):</label>
+            <input type="text" name="define" id="hae">
+            <button type="button" id="nappi">Hae</button>
+        </form>
+    </section>
     <section id="tulos"></section>
     <hr>
     <section id="history"></section>
@@ -58,7 +54,8 @@
                         document.getElementById('tulos').innerHTML = munData;
                         console.log("testi1");
                     }
-                } */
+                }
+            */
 
         function appendData(data) {
             var munData = document.getElementById("tulos");
@@ -70,19 +67,19 @@
                     'Origin: ' + data[i].origin + '<br>'
                 munData.appendChild(div);
                 console.log("testi3")
-            } 
+            }
         }
 
-            fetch('http://localhost:3000/testi2.json')
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    appendData(data);
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
+        fetch('http://localhost:3000/testi2.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
 
     </script>
 </body>
